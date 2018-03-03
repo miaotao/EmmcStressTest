@@ -1,7 +1,10 @@
 package com.lenovo.mat.emmcstresstest;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.PowerManager;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import org.androidannotations.annotations.AfterViews;
@@ -37,6 +41,8 @@ public class EmmcStessTest extends AppCompatActivity {
 
     Random ra =new Random();
 
+
+    PowerManager.WakeLock mWakeLock;
     @AfterViews
     void afterViews()
     {
@@ -44,6 +50,12 @@ public class EmmcStessTest extends AppCompatActivity {
         startTime=System.currentTimeMillis();
         updateTextBackground();
         background_write();
+    }
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
     @UiThread
