@@ -74,7 +74,7 @@ public class EmmcStessTest extends AppCompatActivity {
         updateTextBackground();
     }
 
-    @Background(delay = 500)
+    @Background(delay = 100)
     void background_write(){
 
         int size=0;
